@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+    <!-- CSS Code -->
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css">
+    <!-- [END css] -->
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+      blockquote {
+        margin-bottom: 10px;
+        border-left-color: #bbb;
+      }
+      form {
+        margin-top: 10px;
+      }
+      .form-signin input[type="text"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+      .row {
+        margin-left: 0px;
+        margin-top: 10px;
+        overflow: scroll;
+      }
+    </style>
+  </head>
+  <body>
+  <center><img src="/bootstrap/img/banner.png" alt="Call waiting..." width="400" height="100"></center>
+  
+    <div class="container">
+    <!-- Pull the last 3 entries from the datastore and render in the page. -->
+	<H3>Latest Submissions<BR></h3>
+      {% for Datainsert in Datainserts %}
+
+		I called: <B>{{ Datainsert.nameofcompany }}</B> on <B> {{ Datainsert.dateofcall }}</B> at <B>{{ Datainsert.timeofcall }}</B> and was on hold for <B>{{ Datainsert.minutesofcall }}</B> minutes.<BR>
+
+      {% endfor %}
+    <!-- Form to allow user to insert data into the datastore -->
+      <form action="/sign?list={{ list }}" method="post">
+        <div>Name of Company:<textarea name="nameofcompany" class="input-block-level" rows="1"></textarea></div>   
+       
+	   <div>What time did you call them?:<input type="date" name="dateofcall" /><input type="time" name="timeofcall" /></div>
+        <div>
+		
+		<div>Time you were on hold for? - in minutes:<textarea name="minutesofcall" class="input-block-level" rows="1"></textarea></div>
+        <div>
+	<!-- Submit button to activate the code -->	
+		<input type="submit" class="btn btn-small btn-primary" value="Submit your time"></div>
+      </form>
+
+      <hr>
+
+
+    </div>
+  </body>
+</html>
+{% endautoescape %}

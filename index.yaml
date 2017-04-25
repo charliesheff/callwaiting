@@ -1,0 +1,6 @@
+indexes:
+- kind: Datainsert
+  ancestor: yes
+  properties:
+  - name: date
+    direction: desc
